@@ -1,0 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+/// App-wide light/dark switch. Provided once in `main.dart`, read anywhere
+/// with `context.read<ThemeCubit>()`.
+class ThemeCubit extends Cubit<ThemeMode> {
+  ThemeCubit() : super(ThemeMode.system);
+
+  void setMode(ThemeMode mode) => emit(mode);
+
+  void toggle(Brightness current) =>
+      emit(current == Brightness.dark ? ThemeMode.light : ThemeMode.dark);
+}
