@@ -1,3 +1,5 @@
+import '../constants/app_texts.dart';
+
 class FormatterUtils {
   FormatterUtils._();
 
@@ -10,6 +12,16 @@ class FormatterUtils {
       buffer.write(digits[i]);
     }
     return buffer.toString();
+  }
+
+  /// "+994 50 123 45 67" → "9945012*****": digits only, the first
+  /// [visible] kept, the rest hidden.
+  static String maskPhone(String phone, {int visible = 7}) {
+    final digits = phone.replaceAll(RegExp(r'\D'), '');
+    final shown = digits.length > visible
+        ? digits.substring(0, visible)
+        : digits;
+    return '$shown${AppTexts.phoneMask}';
   }
 
   /// "4532123456781234" → "**** **** **** 1234"

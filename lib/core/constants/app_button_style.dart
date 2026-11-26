@@ -13,8 +13,8 @@ class AppButtonStyle {
   static ButtonStyle get primary => ButtonStyle(
     backgroundColor: AppColors.primary500.wspAll,
     foregroundColor: AppColors.white.wspAll,
-    textStyle: AppTextStyles.bodyLargeBold.wspAll,
-    minimumSize: Size(double.infinity, 56.h).wspAll,
+    textStyle: AppTextStyles.bodyLargeSemiBold.wspAll,
+    minimumSize: Size(double.infinity, AppSizes.buttonHeight.h).wspAll,
     elevation: 0.0.wspAll,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppSizes.radiusButton),
@@ -31,12 +31,18 @@ class AppButtonStyle {
     textStyle: AppTextStyles.bodyMediumSemiBold.wspAll,
   );
 
+  /// Greyed-out primary while a form is incomplete (pair with `onPressed: null`).
+  static ButtonStyle disabled(BuildContext context) => primary.copyWith(
+    backgroundColor: context.colors.placeholder.wspAll,
+    foregroundColor: context.colors.onPlaceholder.wspAll,
+  );
+
   static ButtonStyle outlined(BuildContext context) => primary.copyWith(
     backgroundColor: AppColors.transparent.wspAll,
     foregroundColor: AppColors.primary500.wspAll,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppSizes.radiusButton),
-      side: const BorderSide(color: AppColors.primary500, width: 1.5),
+      side: const BorderSide(color: AppColors.primary500),
     ).wspAll,
   );
 }
