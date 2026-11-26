@@ -21,6 +21,9 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     required this.navBarBackground,
     required this.navBarInactive,
     required this.shadow,
+    required this.placeholder,
+    required this.onPlaceholder,
+    required this.iconCircle,
   });
 
   final Color background;
@@ -38,8 +41,17 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
   final Color navBarInactive;
   final Color shadow;
 
+  /// Empty-state fill: the Add New Card preview and a disabled button.
+  final Color placeholder;
+
+  /// Label on a [placeholder]-filled button.
+  final Color onPlaceholder;
+
+  /// Round background behind service icons (Features, Pay Bills).
+  final Color iconCircle;
+
   static const light = AppThemeColors(
-    background: AppColors.greyScale50,
+    background: AppColors.white,
     surface: AppColors.white,
     surfaceVariant: AppColors.greyScale100,
     border: AppColors.greyScale200,
@@ -53,15 +65,18 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     navBarBackground: AppColors.white,
     navBarInactive: AppColors.greyScale500,
     shadow: Color(0x14000000),
+    placeholder: AppColors.greyScale300,
+    onPlaceholder: AppColors.white,
+    iconCircle: AppColors.greyScale100,
   );
 
   static const dark = AppThemeColors(
     background: AppColors.dark1,
     surface: AppColors.dark2,
-    surfaceVariant: AppColors.dark3,
-    border: AppColors.dark4,
+    surfaceVariant: AppColors.dark2,
+    border: AppColors.dark3,
     textPrimary: AppColors.white,
-    textSecondary: AppColors.greyScale300,
+    textSecondary: AppColors.greyScale200,
     textTertiary: AppColors.greyScale500,
     icon: AppColors.white,
     income: AppColors.success500,
@@ -70,6 +85,9 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     navBarBackground: AppColors.dark2,
     navBarInactive: AppColors.greyScale600,
     shadow: Color(0x40000000),
+    placeholder: AppColors.dark3,
+    onPlaceholder: AppColors.greyScale600,
+    iconCircle: AppColors.dark3,
   );
 
   @override
@@ -88,6 +106,9 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     Color? navBarBackground,
     Color? navBarInactive,
     Color? shadow,
+    Color? placeholder,
+    Color? onPlaceholder,
+    Color? iconCircle,
   }) => AppThemeColors(
     background: background ?? this.background,
     surface: surface ?? this.surface,
@@ -103,6 +124,9 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     navBarBackground: navBarBackground ?? this.navBarBackground,
     navBarInactive: navBarInactive ?? this.navBarInactive,
     shadow: shadow ?? this.shadow,
+    placeholder: placeholder ?? this.placeholder,
+    onPlaceholder: onPlaceholder ?? this.onPlaceholder,
+    iconCircle: iconCircle ?? this.iconCircle,
   );
 
   @override
@@ -127,6 +151,9 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
       )!,
       navBarInactive: Color.lerp(navBarInactive, other.navBarInactive, t)!,
       shadow: Color.lerp(shadow, other.shadow, t)!,
+      placeholder: Color.lerp(placeholder, other.placeholder, t)!,
+      onPlaceholder: Color.lerp(onPlaceholder, other.onPlaceholder, t)!,
+      iconCircle: Color.lerp(iconCircle, other.iconCircle, t)!,
     );
   }
 }

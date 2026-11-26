@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
 
-enum CardBrand { visa, mastercard }
+enum CardBrand {
+  visa('VISA'),
+  mastercard('Mastercard');
+
+  const CardBrand(this.label);
+
+  final String label;
+}
 
 enum CardType { debit, credit }
 
@@ -16,8 +24,10 @@ class CardModel {
     required this.balance,
     required this.brand,
     required this.type,
-    required this.gradient,
+    required this.color,
+    required this.patternColor,
     this.isFrozen = false,
+    this.brandArt,
   });
 
   final String id;
@@ -28,44 +38,54 @@ class CardModel {
   final double balance;
   final CardBrand brand;
   final CardType type;
-  final Gradient gradient;
+
+  /// Flat card fill and the lighter squares drawn over it.
+  final Color color;
+  final Color patternColor;
   final bool isFrozen;
+
+  /// Card artwork asset shown on funding tiles; null → card colour + brand.
+  final String? brandArt;
 
   String get last4 => number.substring(number.length - 4);
 
   static const cards = [
     CardModel(
       id: 'c1',
-      holderName: 'GOZAL MUSAYEVA',
-      number: '4532123456781234',
+      holderName: 'Gozal Musayeva',
+      number: '3296154708008739',
       expiry: '08/29',
       cvv: '123',
-      balance: 12450.30,
+      balance: 25475500,
       brand: CardBrand.visa,
       type: CardType.debit,
-      gradient: AppColors.cardGradientBlue,
+      color: AppColors.cardBlue,
+      patternColor: AppColors.cardBluePattern,
+      brandArt: AppAssets.cardVisaBlue,
     ),
     CardModel(
       id: 'c2',
-      holderName: 'GOZAL MUSAYEVA',
-      number: '5412758934125678',
+      holderName: 'Gozal Musayeva',
+      number: '1547329687390800',
       expiry: '11/28',
       cvv: '456',
-      balance: 8200.45,
-      brand: CardBrand.mastercard,
+      balance: 47567500,
+      brand: CardBrand.visa,
       type: CardType.credit,
-      gradient: AppColors.cardGradientDark,
+      color: AppColors.cardTeal,
+      patternColor: AppColors.cardTealPattern,
     ),
     CardModel(
       id: 'c3',
-      holderName: 'GOZAL MUSAYEVA',
+      holderName: 'Gozal Musayeva',
       number: '4716998812349012',
       expiry: '03/30',
       cvv: '789',
-      balance: 4200.00,
+      balance: 4200000,
       brand: CardBrand.visa,
       type: CardType.debit,
-      gradient: AppColors.cardGradientPurple,
+      color: AppColors.cardPurple,
+      patternColor: AppColors.cardPurplePattern,
       isFrozen: true,
     ),
   ];

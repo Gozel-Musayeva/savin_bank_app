@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
+import 'app_sizes.dart';
 import 'app_text_style.dart';
 import 'app_theme_colors.dart';
 
@@ -44,7 +45,7 @@ class AppThemes {
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
-      fontFamily: 'Urbanist',
+      fontFamily: AppTextStyles.fontFamily,
       colorScheme: colorScheme,
       primaryColor: AppColors.primary500,
       scaffoldBackgroundColor: colors.background,
@@ -86,25 +87,34 @@ class AppThemes {
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: AppColors.transparent,
       ),
+      // Figma "Form" component: light-grey fill, radius 10, no border when
+      // empty, 1px brand border on focus (CustomInput keeps it once filled).
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: colors.surfaceVariant,
-        hintStyle: AppTextStyles.bodyMediumRegular.copyWith(
-          color: colors.textTertiary,
+        isDense: true,
+        contentPadding: const EdgeInsets.all(AppSizes.inputPadding),
+        hintStyle: AppTextStyles.bodySmallRegularTight.copyWith(
+          color: colors.textSecondary,
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+        errorStyle: AppTextStyles.bodyMediumRegularTight.copyWith(
+          color: AppColors.error500,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.primary500),
+        border: _inputBorder(BorderSide.none),
+        enabledBorder: _inputBorder(BorderSide.none),
+        focusedBorder: _inputBorder(
+          const BorderSide(color: AppColors.primary500),
         ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.error500),
+        errorBorder: _inputBorder(const BorderSide(color: AppColors.error500)),
+        focusedErrorBorder: _inputBorder(
+          const BorderSide(color: AppColors.error500),
         ),
       ),
     );
   }
+
+  static OutlineInputBorder _inputBorder(BorderSide side) => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(AppSizes.radiusInput),
+    borderSide: side,
+  );
 }

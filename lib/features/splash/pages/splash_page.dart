@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../common/widgets/custom_loading.dart';
-import '../../../core/constants/app_colors.dart';
+import '../../../common/widgets/custom_logo.dart';
 import '../../../core/constants/app_durations.dart';
-import '../../../core/constants/app_text_style.dart';
-import '../../../core/constants/app_texts.dart';
+import '../../../core/extensions/context_extension.dart';
 import '../../../core/navigation/go.dart';
 import '../../../core/navigation/pager.dart';
 
@@ -32,25 +29,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DecoratedBox(
-        decoration: const BoxDecoration(gradient: AppColors.primaryGradient),
-        child: Stack(
-          children: [
-            Center(
-              child: Text(
-                AppTexts.appName,
-                style: AppTextStyles.h2.copyWith(color: AppColors.white),
-              ),
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 80.h,
-              child: const CustomLoading(),
-            ),
-          ],
-        ),
-      ),
+      backgroundColor: context.colors.background,
+      body: const Center(child: CustomLogo.large()),
     );
   }
 }
